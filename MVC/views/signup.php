@@ -1,16 +1,17 @@
-<?php include 'MainHeader.php'; ?>
-<?php include '../Controllers/UserControll.php'; ?>
+<?php include 'mainheader.php'; ?>
+<?php include '../controllers/UserController.php'; ?>
  <html>
     <head></head>
 	<body>
 	    <div align="center">
 		    <h3>Sign Up</h3>
-			<h5><?php echo $err_db; ?></h5>
+			<h5><?hp echo $err_db; ?></h5>
 			<form action="" method="post">
 			    <div>
 				    <h4>Name</h4>
 					<input type = "text" name = "name" value="<?php echo $name; ?>"/>
-					<span> <?php echo $err_name; ?> </span>
+				   <span> <?php echo $err_name; ?> </span>
+					
 				</div>
 				<div>
 				    <h4>Username</h4>
@@ -33,5 +34,5 @@
 			</form>
 		</div>
 	</body>
-    <?php include 'Footer.php'; ?>
+    <?php include 'footer.php'; ?>
 </html>

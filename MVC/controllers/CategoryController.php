@@ -1,41 +1,61 @@
 <?php
-    include '../Models/DBConfig.php';
-    $cname="";
-    $err_cname="";
+    include '../models/db_config.php';
+    $name="";
+    $err_name="";
 	$err_db="";
 	$hasError = false;
 
     if(isset($_POST["addCategory"])){
-		if(empty($_POST["cname"])){
-		    $err_cname = "Category Name Requird";
+		if(empty($_POST["name"])){
+		    $err_name = "Category Name Requird";
 			$hasError = true;
 	    }
+		else{
+			$name= $_POST["name"];
+		}
 		if(!$hasError){
-			$rs = insertCategory($cname);
+			$rs = insertCategory($name);
 			if($rs === true){
-				header("Location: AllCategories.php");
+				header("Location: allcategory.php");
 			}
 			$err_db = $rs;
 		}
 	}
 	else if(isset($_POST["updateCategory"])){
-		if(empty($_POST["cname"])){
-		    $err_cname = "Category Name Requird";
+		if(empty($_POST["name"])){
+		    $err_name = "Category Name Requird";
 			$hasError = true;
 	    }
+		else{
+			$cname= $_POST["name"];
+		}
 		if(!$hasError){
-			$rs = updateCategory($cname, $_POST["id"]);
+			$rs = updateCategory($name, $_POST["id"]);
 			if($rs === true){
-				header("Location: AllCategories.php");
+				header("Location: allcategory.php");
 			}
 			$err_db = $rs;
 		}
+	}
+		else if(isset($_POST["deleteCategory"])){
+		if(empty($_POST["name"])){
+		    $err_name = "Category Name Requird";
+			$hasError = true;
+	    }
+		else{
+			$cname= $_POST["name"];
+		}
+		if(!$hasError){
+			$rs = deleteCategory($name, $_POST["id"]);
+			if($rs === true){
+				header("Location: allcategory.php");
+			}
+			$err_db = $rs;
 		}
 	}
 	
-	
-	function insertCategory($cname){
-		$query = "insert into categories values (NULL,'$cname')";
+	function insertCategory($name){
+		$query = "insert into categories values (NULL,'$name')";
 		return execute($query);
 	}
 	function getAllCategories(){
@@ -59,4 +79,12 @@
 		$rs = execute($query);
 		return $rs;
 	}
+	function deleteCategory($name,$id){
+		$query = "delete from categories where id=$id";
+		$rs = execute($query);
+		return $rs;
+	}
+	
+	
+	
 ?>

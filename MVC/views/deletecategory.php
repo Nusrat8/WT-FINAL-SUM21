@@ -9,7 +9,7 @@
     <head></head>
 	<body>
 	    <div align="center">
-		    <h3>Edit Category</h3>
+		    <h3>Delete Category</h3>
 			<h5><?php echo $err_db; ?></h5>
 			<form action="" method="post">
 			    <div>
@@ -19,7 +19,7 @@
 					<span> <?php echo $err_name; ?> </span>
 				</div>
 				<div>
-					<input type = "submit" name = "updateCategory" value = "Update"/>
+					<input type = "submit" name = "deleteCategory" value = "Delete"/>
 				</div>
 			</form>
 		</div>

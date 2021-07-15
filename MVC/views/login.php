@@ -1,5 +1,5 @@
-<?php include 'MainHeader.php'; ?>
-<?php include '../Controllers/UserControll.php'; ?>
+<?php include 'mainheader.php'; ?>
+<?php include '../controllers/UserController.php'; ?>
  <html>
     <head></head>
 	<body>
@@ -21,10 +21,10 @@
 					<input type = "submit" name = "login" value = "Login"/>
 				</div>
 				<div>
-					<a href = "SignUp.php" >Not Registered Yet? Sign Up</a>
+					<a href = "signup.php" >Not Registered Yet? Sign Up</a>
 				</div>
 			</form>
 		</div>
 	</body>
-    <?php include 'Footer.php'; ?>
+    <?php include 'footer.php'; ?>
 </html>
