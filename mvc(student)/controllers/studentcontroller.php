@@ -1,10 +1,9 @@
 <?php
     include '../models/db_config.php';
-    
-	$name="";
+    $name="";
     $err_name="";
-	$deptid="";
-    $err_deptid="";
+	$did="";
+    $err_did="";
     $dob="";
     $err_dob="";
 	$credit="";
@@ -43,15 +42,15 @@
 		else{
 		    $cgpa = $_POST["cgpa"];
 	    }
-		if(empty($_POST["deptid"])){
-		    $err_did = "Deptid Requird";
+		if(empty($_POST["did"])){
+		    $err_did = "Dept. Requird";
 			$hasError = true;
 	    }
 		else{
-		    $did = $_POST["deptid"];
+		    $did = $_POST["did"];
 	    }
 		if(!$hasError){
-			$rs = insertStudent($name,$dob,$credit,$cgpa,$deptid);
+			$rs = insertStudent($name,$dob,$credit,$cgpa,$did);
 			if($rs === true){
 				header("Location: allstudents.php");
 			}
@@ -116,11 +115,17 @@
 	}
 	
 	
-	function insertStudent($name,$dob,$credit,$cgpa,$deptid){
-		$query = "insert into students values (NULL,'$name','$dob','$credit','$cgpa', $deptid)";
+	function insertStudent($name,$dob,$credit,$cgpa,$did){
+		$query = "insert into students values (NULL,'$name','$dob','$credit','$cgpa', $did)";
 		return execute($query);
 	}
 	
+	function getStudents(){
+		$query= "select s.*,d.name as 'd_name' from students s left join department d on s.dept_id = d.id";
+
+		$rs = get($query);
+		return $rs;
+	}
 	
 	function getStudent($id){
 		$query="select * from students where id=$id";
@@ -134,9 +139,14 @@
 		return $rs;
 	}
 	
+	function getDepts(){
+		$query="select * from department";
+		$rs = get($query);
+		return $rs;
+	}
 	
-	function updateStudent($name,$dob,$credit,$cgpa,$deptid,$id){
-		$query = "update students set name='$name', dob='$dob', credit=$credit, cgpa=$cgpa, dept_id=$deptid where id=$id";
+	function updateStudent($name,$dob,$credit,$cgpa,$did,$id){
+		$query = "update students set name='$name', dob='$dob', credit=$credit, cgpa=$cgpa, dept_id=$did where id=$id";
 		$rs = execute($query);
 		return $rs;
 	}

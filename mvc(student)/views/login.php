@@ -1,5 +1,4 @@
 <?php include '../controllers/usercontroller.php'; ?>
- 
  <html>
     <head></head>
 	<body>
